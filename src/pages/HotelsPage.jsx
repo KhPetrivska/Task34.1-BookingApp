@@ -3,7 +3,7 @@ import React from "react";
 const HotelsPage =  () => {
 return(
     <div>
-    <h1>Hotels message</h1>    
+    <h1>Hotels</h1>    
     </div>
 )
 }
