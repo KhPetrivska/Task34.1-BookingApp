@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Field } from "react-final-form";
 import { Box, Container, Button, Typography } from "@mui/material";
 
@@ -12,7 +12,12 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDestinationList } from "../redux/slices/destinationSlice";
+
 const SearchForm = () => {
+
+  
   const [destination, setDestination] = useState("");
   const [inDate, setInDate] = useState(null);
   const [outDate, setOutDate] = useState(null);
@@ -26,6 +31,16 @@ const SearchForm = () => {
    adults: false,
    children:false
   });
+
+
+  const dispatch = useDispatch()
+  const destinationList = useSelector((state) => state.destination); 
+
+  useEffect(() => {
+      dispatch(fetchDestinationList());
+    }, [dispatch]);
+
+ 
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value);
@@ -94,9 +109,16 @@ const SearchForm = () => {
                     onChange={handleDestinationChange}
                  
                   >
-                    <MenuItem value="Toronto">Toronto</MenuItem>
-                    <MenuItem value="London">London</MenuItem>
-                    <MenuItem value="Kyiv">Kyiv</MenuItem>
+                                        {destinationList && destinationList.length > 0 ? (
+                      destinationList.map((dest, index) => (
+                        <MenuItem key={dest.value} value={dest.label}>
+                          {dest.label}
+                        </MenuItem>
+                      ))
+                    ) : (
+                      <MenuItem value="">Loading destinations...</MenuItem>
+                    )} 
+
                   </Select>
                   {errors.destination && (
                     <Typography fontSize="10px" color="error" variant="caption" padding="4px 0px 0px">
