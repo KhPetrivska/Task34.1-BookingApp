@@ -16,8 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDestinationList } from "../redux/slices/destinationSlice";
 
 const SearchForm = () => {
-
-  
   const [destination, setDestination] = useState("");
   const [inDate, setInDate] = useState(null);
   const [outDate, setOutDate] = useState(null);
@@ -28,19 +26,16 @@ const SearchForm = () => {
     destination: false,
     inDate: false,
     outDate: false,
-   adults: false,
-   children:false
+    adults: false,
+    children: false,
   });
 
-
-  const dispatch = useDispatch()
-  const destinationList = useSelector((state) => state.destination); 
+  const dispatch = useDispatch();
+  const destinationList = useSelector((state) => state.destination);
 
   useEffect(() => {
-      dispatch(fetchDestinationList());
-    }, [dispatch]);
-
- 
+    dispatch(fetchDestinationList());
+  }, [dispatch]);
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value);
@@ -107,9 +102,8 @@ const SearchForm = () => {
                     value={destination}
                     label="Destination"
                     onChange={handleDestinationChange}
-                 
                   >
-                                        {destinationList && destinationList.length > 0 ? (
+                    {destinationList && destinationList.length > 0 ? (
                       destinationList.map((dest, index) => (
                         <MenuItem key={dest.value} value={dest.label}>
                           {dest.label}
@@ -117,11 +111,15 @@ const SearchForm = () => {
                       ))
                     ) : (
                       <MenuItem value="">Loading destinations...</MenuItem>
-                    )} 
-
+                    )}
                   </Select>
                   {errors.destination && (
-                    <Typography fontSize="10px" color="error" variant="caption" padding="4px 0px 0px">
+                    <Typography
+                      fontSize="10px"
+                      color="error"
+                      variant="caption"
+                      padding="4px 0px 0px"
+                    >
                       Please select a destination
                     </Typography>
                   )}
@@ -162,7 +160,7 @@ const SearchForm = () => {
                         ...prev,
                         outDate:
                           !newValue || (inDate && newValue.isBefore(inDate)),
-                      })); 
+                      }));
                     }}
                     renderInput={(params) => (
                       <TextField {...params} error={errors.outDate} />
@@ -191,13 +189,12 @@ const SearchForm = () => {
                   fullWidth
                   variant="outlined"
                   InputProps={{ inputProps: { min: 0 } }}
-                  />
-                  {errors.adults && (
-                    <Typography fontSize="10px" color="error" variant="caption">
-                   At least 1 adult
-                    </Typography>
-                  )}
-
+                />
+                {errors.adults && (
+                  <Typography fontSize="10px" color="error" variant="caption">
+                    At least 1 adult
+                  </Typography>
+                )}
               </Box>
 
               {/* Children */}
@@ -216,11 +213,11 @@ const SearchForm = () => {
                   variant="outlined"
                   InputProps={{ inputProps: { min: 0 } }}
                 />
-                 {errors.children && (
-                    <Typography fontSize="10px" color="error" variant="caption">
-                     Cannot be empty
-                    </Typography>
-                  )}
+                {errors.children && (
+                  <Typography fontSize="10px" color="error" variant="caption">
+                    Cannot be empty
+                  </Typography>
+                )}
               </Box>
 
               {/* Submit */}
