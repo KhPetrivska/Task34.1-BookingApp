@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
@@ -12,7 +12,6 @@ import { fetchHotelList } from "../redux/slices/hotelSlice";
 const HotelPage = () => {
   const dispatch = useDispatch();
   const hotelList = useSelector((state) => {
-    console.log(state.hotel);
     return state.hotel;
   });
 
@@ -43,15 +42,13 @@ const HotelPage = () => {
                     variant="body2"
                     sx={{ color: "text.secondary", fontSize: 16 }}
                   >
-                    address: {hotel.address}
+                    address: 
+                    {hotel.address}
                   </Typography>
                   <Typography
                     variant="body2"
-                    sx={{ color: "text.secondary", fontSize: 16 }}
-                  >
-                    city: {hotel.city};{" "}
-                    {hotel.state ? `state: ${hotel.state};` : ""} country code:{" "}
-                    {hotel.country_code}
+                    sx={{ color: "text.secondary", fontSize: 16 }}>
+                    city:${hotel.city} {hotel.state ? `state: ${hotel.state};` : ""} country code:{" "} {hotel.country_code}
                   </Typography>
                 </CardContent>
               </Card>

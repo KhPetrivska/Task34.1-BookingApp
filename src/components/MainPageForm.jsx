@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Form, Field } from "react-final-form";
-import { Box, Container, Button, Typography } from "@mui/material";
+import { Form } from "react-final-form";
+import {
+  Box,
+  Container,
+  Button,
+  Typography
+} from "@mui/material";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -48,22 +53,21 @@ const SearchForm = () => {
       inDate: !inDate,
       outDate: !outDate || (inDate && outDate && outDate.isBefore(inDate)),
       adults: adults < 1,
-      children: children < 0 || isNaN(children),
+      children: children < 0 || children.isNaN
     };
     setErrors(errors);
     return !Object.values(errors).some(Boolean);
   };
 
-  const onSubmit = (values) => {
+  const onSubmit = () => {
     if (validateForm()) {
       const obj = {
         destination,
         inDate: inDate ? inDate.format("YYYY-MM-DD") : null,
         outDate: outDate ? outDate.format("YYYY-MM-DD") : null,
         adults: parseInt(adults, 10),
-        children: parseInt(children, 10),
+        children: parseInt(children, 10)
       };
-      console.log("Results: ", obj);
     }
   };
 
@@ -74,7 +78,7 @@ const SearchForm = () => {
         borderRadius: "4px",
         padding: "20px",
         margin: "60px 0px",
-        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.3)",
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.3)"
       }}
     >
       <Form
@@ -87,7 +91,7 @@ const SearchForm = () => {
                 justifyContent: "space-between",
                 alignItems: "top",
                 flexWrap: "wrap",
-                gap: 2,
+                gap: 2
               }}
             >
               {/* Destination */}
@@ -104,7 +108,7 @@ const SearchForm = () => {
                     onChange={handleDestinationChange}
                   >
                     {destinationList && destinationList.length > 0 ? (
-                      destinationList.map((dest, index) => (
+                      destinationList.map((dest) => (
                         <MenuItem key={dest.value} value={dest.label}>
                           {dest.label}
                         </MenuItem>
@@ -136,7 +140,7 @@ const SearchForm = () => {
                       setInDate(newValue);
                       setErrors((prev) => ({ ...prev, inDate: !newValue }));
                     }}
-                    renderInput={(params) => (
+                    textField={(params) => (
                       <TextField {...params} error={errors.inDate} />
                     )}
                   />
@@ -159,10 +163,10 @@ const SearchForm = () => {
                       setErrors((prev) => ({
                         ...prev,
                         outDate:
-                          !newValue || (inDate && newValue.isBefore(inDate)),
+                          !newValue || (inDate && newValue.isBefore(inDate))
                       }));
                     }}
-                    renderInput={(params) => (
+                    textField={(params) => (
                       <TextField {...params} error={errors.outDate} />
                     )}
                   />
@@ -206,7 +210,7 @@ const SearchForm = () => {
                   onChange={(e) => {
                     const value = e.target.value;
                     setChildren(value);
-                    //setErrors((prev) => ({ ...prev, children: isNaN(value) || value < 0  }));
+                    //  setErrors((prev) => ({ ...prev, children: isNaN(value) || value < 0  }));
                   }}
                   error={errors.children}
                   fullWidth
@@ -229,7 +233,7 @@ const SearchForm = () => {
                     backgroundColor: "orange",
                     color: "white",
                     width: "100%",
-                    height: "54px",
+                    height: "54px"
                   }}
                 >
                   Submit

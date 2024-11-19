@@ -28,4 +28,4 @@ const store = configureStore({
 sagaMiddleware.run(DestinationListSaga);
 sagaMiddleware.run(hotelListSaga);
 
-export default store;
+export default store; 

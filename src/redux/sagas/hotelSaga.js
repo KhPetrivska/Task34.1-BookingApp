@@ -5,8 +5,8 @@ import { setHotelList, fetchHotelList } from "../slices/hotelSlice";
 function* hotelHandler() {
   try {
     const hotelList = yield call(async () => {
-      //const resp = await axios.get("https://bookingapp.free.beeceptor.com/destination");
-      const resp = await axios.get("https://bookapp.free.beeceptor.com/hotels"); //temporary
+        const resp = await axios.get("https://bookingapp.free.beeceptor.com/hotels");
+     //const resp = await axios.get("https://bookapp.free.beeceptor.com/hotels"); //temporary
 
       return resp.data;
     });
