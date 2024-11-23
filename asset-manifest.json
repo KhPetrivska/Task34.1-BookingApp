@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/task34.1-booking-app/static/css/main.f855e6bc.css",
+    "main.js": "/task34.1-booking-app/static/js/main.d0df209f.js",
+    "static/media/Hotel.png": "/task34.1-booking-app/static/media/Hotel.44774fa641bbcbe9d1c3.png",
+    "index.html": "/task34.1-booking-app/index.html",
+    "main.f855e6bc.css.map": "/task34.1-booking-app/static/css/main.f855e6bc.css.map",
+    "main.d0df209f.js.map": "/task34.1-booking-app/static/js/main.d0df209f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.d0df209f.js"
+  ]
+}
